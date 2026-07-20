@@ -73,6 +73,25 @@ def stopword_removal(words):
             filtered_words.append(word)
 
     return filtered_words
+# Text filtaration
+def filtration(text):
+
+    # Remove URLs
+    text = re.sub(r'https?://\S+|www\.\S+', '', text)
+
+    # Remove Email Addresses
+    text = re.sub(r'\S+@\S+', '', text)
+
+    # Remove Numbers
+    text = re.sub(r'\d+', '', text)
+
+    # Remove Emojis / Non-ASCII Characters
+    text = re.sub(r'[^\x00-\x7F]+', '', text)
+
+    # Remove Extra Spaces
+    text = re.sub(r'\s+', ' ', text)
+
+    return text.strip()
 
 
 
@@ -110,3 +129,14 @@ words = word_tokenize(text_4.lower())
 word = stopword_removal(words)
 print(" Removed Stop Words ")
 print(word)
+
+# Testing Filtarations 
+filtered_text = filtration(text)
+
+print("Original Text")
+print(text)
+
+print()
+
+print("Filtered Text")
+print(filtered_text)
